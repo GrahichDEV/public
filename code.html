@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Export Kyocera</title>
+        <style>
+            body {
+                overflow:hidden;
+            }
+
+            #wrapper {
+                margin:auto;
+                width:80%;
+            }
+            .pins {
+                margin-top:20px;
+                position:relative;
+            }
+
+            .pin {
+                width: 20%;
+                min-height: 10px;
+                /*background: #fcfcfc;*/
+                background: #fcfcfc;
+                color:#ccc;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="wrapper">
+            <div class="pins">
+                <div class="pin">1</div>
+                <div class="pin">2</div>
+                <div class="pin">3</div>
+                <div class="pin">4</div>
+                <div class="pin">5</div>
+                <div class="pin">6</div>
+                <div class="pin">7</div>
+                <div class="pin">8</div>
+                <div class="pin">9</div>
+                <div class="pin">10</div>
+                <div class="pin">11</div>
+            </div>
+        </div>
+        <script>
+            var pins = document.getElementsByClassName("pins");
+            var pin = document.getElementsByClassName("pin");
+
+            // Cords
+            var x = 0;
+            var y = 0;
+            var rows = Math.round(pin.length / 5);
+            var row = 0;
+            var currentRow = 0;
+
+            /*
+            for(i = 0; i <= rows; i++) {
+            }
+            */
+
+            // Number of pins
+            for(i = 0; i <= pin.length; i++) {
+                var rHeight = Math.random() * (400 - 100) + 150;
+
+                // Give each pin random height
+                pin[i].style.height = rHeight + "px";
+                pin[i].style.position = "absolute";
+                pin[i].style.lineHeight = rHeight + "px";
+
+                x += pin[i].clientWidth + 10;
+
+                if(i % 5 == 0 && i != 0) {
+                    // If number is divided row += 1
+                    row++;
+                    x = 0;
+                }
+
+                console.log(row);
+
+                var row_check = false;
+
+                if(row == 0) {
+                    // y should this time be each i height
+                    if(i == 0) {
+                        x = 0;
+                        pin[i].style.left = x + "px";
+                    } else {
+                        pin[i].style.left = x + "px";
+                    }
+                    //pin[i].style.top = y + "px";
+                } else if(row > 0) {
+                    // This should be 0 only if row == 1
+                    if(row == 1) {
+                        y = 0;
+                    }
+                    y += pin[i - 5].clientHeight + 10;
+                    pin[i].style.left = x + "px";
+                    pin[i].style.top = y + "px";
+                    console.log(y);
+                    //pin[i].style.top = y + "px";
+                }
+            }
+        </script>
+    </body>
+</html>
